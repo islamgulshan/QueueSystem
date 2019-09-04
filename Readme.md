@@ -46,7 +46,7 @@ login
 }
 
 
-# generate  Token With Login user Id 
+# Generate  Token With Login user Id 
 
 #### URL For access 
 
@@ -86,7 +86,7 @@ api/total/sale/Dispenser
 
 api/total/sale/patientName
 
-#### jSon Format
+#### json Format
 
 {
 		"patientName":"gulshan"
@@ -95,7 +95,7 @@ api/total/sale/patientName
 
 
 
- ##  Total sale of year 
+ ##  Total sale of token by year 
   
 
 #### URL For access 
@@ -111,23 +111,21 @@ api/total/sale/years
 }
 
 
-##  Total sale of Month 
+##  Total sale of token by  Month 
   
-
 #### URL For access 
 
 
 api/total/sale/month
 
-#### jSon Format
+#### json Format
 
 {
-		"months":9
-	
+		"months":9	
 }
 
 
-##  Total sale of by Day 
+##  Total sale of token  by Day 
   
 
 #### URL For access 
@@ -144,7 +142,7 @@ api/total/sale/date
 
 api/total/sale/betweendate
 
-#### jSon Format
+#### json Format
 
 {
 		"startdate":"2018-09-02T"
