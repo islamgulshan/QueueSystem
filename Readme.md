@@ -111,7 +111,7 @@ api/total/sale/years
 }
 
 
- ##  Total sale of Month 
+##  Total sale of Month 
   
 
 #### URL For access 
@@ -126,6 +126,37 @@ api/total/sale/month
 	
 }
 
+
+##  Total sale of by Day 
+  
+
+#### URL For access 
+
+
+api/total/sale/date
+
+
+##  Total sale of token Between date  
+  
+
+#### URL For access 
+
+
+api/total/sale/betweendate
+
+#### jSon Format
+
+{
+		"startdate":"2018-09-02T"
+		"endDate":"2019-09-02T"
+	
+}
+
+
+
+ 
+
+ 
 
 
 
