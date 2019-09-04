@@ -1,7 +1,7 @@
 
 # Queue Management System 
 
-## Signup user POST
+## Signup New Dispenser 
   
 
 #### URL For access 
@@ -29,7 +29,7 @@ signup
 
 
 
-## Login user POST
+## Login User POST and Generate Token With JWT 
   
 
 #### URL For access 
@@ -46,21 +46,19 @@ login
 }
 
 
-# generate Token
+# generate  Token With Login user Id 
 
 #### URL For access 
 
 
-
-login
+api/generate/token
 
 
 #### Json Fromat
 
 	{
 	"patientName" :"gulshan",
-	"price":200,
-	"token":12
+	"price":200 
 	}
 
 
@@ -71,6 +69,69 @@ login
 
 
 api/total/sale/Dispenser
+
+#### jSon Format
+
+{
+		"user_type":"5d6d125222800f1c60ea7cbd"
+	
+}
+
+
+##  Total sale of token by Patient Name
+  
+
+#### URL For access 
+
+
+api/total/sale/patientName
+
+#### jSon Format
+
+{
+		"patientName":"gulshan"
+	
+}
+
+
+
+ ##  Total sale of year 
+  
+
+#### URL For access 
+
+
+api/total/sale/years
+
+#### jSon Format
+
+{
+		"years":2019
+	
+}
+
+
+ ##  Total sale of Month 
+  
+
+#### URL For access 
+
+
+api/total/sale/month
+
+#### jSon Format
+
+{
+		"months":9
+	
+}
+
+
+
+
+
+
+
 
 
 
