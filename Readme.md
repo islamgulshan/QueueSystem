@@ -6,7 +6,7 @@
 
 #### URL For access 
 
-QueueSystem/frontend/src/frontend/src/app/app.component.ts
+QueueSystem/front/src/app/app.component.ts
 
 
 
