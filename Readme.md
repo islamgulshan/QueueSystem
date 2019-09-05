@@ -1,6 +1,15 @@
 
 # Queue Management System 
 
+
+##  Calculator Assignment Path and dynamic Menu 
+
+#### URL For access 
+
+QueueSystem/frontend/src/frontend/src/app/app.component.ts
+
+
+
 ## Signup New Dispenser 
   
 
