@@ -2,6 +2,24 @@
 # Queue Management System 
 
 
+
+##  Crud  Assignment Ingular Js 
+
+#### URL For access 
+
+QueueSystem/front/src/app/reservation.component.ts
+
+
+
+## Signup New Dispenser 
+  
+
+#### URL For access 
+
+
+signup
+
+
 ##  Calculator Assignment Path and dynamic Menu 
 
 #### URL For access 
