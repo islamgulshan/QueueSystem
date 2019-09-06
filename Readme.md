@@ -7,7 +7,7 @@
 
 #### URL For access 
 
-QueueSystem/front/src/app/reservation.component.ts
+QueueSystem/front/src/app/reservation/reservation.component.ts
 
 
 
