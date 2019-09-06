@@ -1,0 +1,95 @@
+<div class="container mt-3">
+  <form #Form="ngForm">
+    <!-- Name -->
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        name="name"
+        id="name"
+        [(ngModel)]="name"
+      />
+    </div>
+
+    <!-- Father name -->
+    <div class="form-group">
+      <label for="fName">Father Name</label>
+      <input
+        type="text"
+        class="form-control"
+        name="fName"
+        id="fName"
+        [(ngModel)]="fName"
+      />
+    </div>
+
+    <!-- Mobile Number -->
+    <div class="form-group">
+      <label for="fName">Mobile Number</label>
+      <input
+        type="number"
+        class="form-control"
+        id="mobileNumber"
+        name="mobileNumber"
+        [(ngModel)]="mobileNumber"
+      />
+    </div>
+
+    <!-- Mobile Number -->
+    <div class="form-group">
+      <label for="fName">City</label>
+      <select name="city" class="form-control" id="city" [(ngModel)]="city">
+        <option value="">Select City</option>
+        <option *ngFor="let city of cities" value="{{ city }}">{{
+          city
+        }}</option>
+      </select>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="form-group">
+      <button class="btn btn-success" (click)="AddStudent()">
+        Add Student
+      </button>
+    </div>
+  </form>
+
+  <div class="row">
+    <div class="col-12">
+      <h2 class="text-underline">List of Students</h2>
+    </div>
+
+    <div class="col-12">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Number</th>
+            <th scope="col">Name</th>
+            <th scope="col">Father Name</th>
+            <th scope="col">Mobile Number</th>
+            <th scope="col">City</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let student of students; index as i">
+            <th>{{ i + 1 }}</th>
+            <th scope="row">{{ student.name }}</th>
+            <td>{{ student.fName }}</td>
+            <td>{{ student.mobileNumber }}</td>
+            <td>{{ student.selectedCity }}</td>
+            <td>
+              <button
+                class="btn btn-danger ml-4"
+                (click)="DeleteStudent(student)"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

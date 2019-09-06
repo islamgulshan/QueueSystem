@@ -1,0 +1,203 @@
+<div class="container">
+<h2 class="text-center">Reservation Form</h2>
+<div class="container mt-3">
+  <form #Form="ngForm">
+    <!-- Name -->
+    <div class="form-group row">
+      <label  class="col-sm-2 col-form-label">Name</label>
+      
+	  <div class="col-sm-10">
+	  <input
+        type="text"
+        class="form-control"
+        name="name"
+        id="name"
+        [(ngModel)]="name" 
+		
+      />
+	  </div>
+    </div>
+	
+	 <!-- Name -->
+    <div class="form-group row">
+      <label  class="col-sm-2 col-form-label">Email</label>
+      <div class="col-sm-10">
+	  <input
+        type="text"
+        class="form-control"
+        name="email"
+        id="email"
+		[(ngModel)]="email"
+      />
+    </div>
+	</div>
+	
+ 
+  <!-- Name -->
+ <!-- Mobile Number -->
+    <div class="form-group row">
+      <label  class="col-sm-2 col-form-label">Room Type</label>
+      <div class="col-sm-10">
+	  <select name="Roomtype" class="form-control" id="Roomtype" [(ngModel)]="Roomtype">
+        <option value="">Select City</option>
+        <option *ngFor="let Roomtype of roomTypelist" value="{{ Roomtype }}">{{Roomtype}}</option>
+      </select>
+    </div>
+	</div>
+	
+	<!-- arrival date -->
+	<div class="form-group row">
+      <label  class="col-sm-2 col-form-label">Arrival Date</label>
+      <div class="col-sm-10">
+	  <input
+        type="text"
+        class="form-control"
+        name="arrival_date"
+        id="arrival_date"
+		[(ngModel)]="arrival_date"
+      />
+    </div>
+	</div>
+	
+	
+	<!-- arrival date -->
+    <div class="form-group row">
+      <label  class="col-sm-2 col-form-label">Departure Date</label>
+      
+	  <div class="col-sm-10">
+	  <input
+        type="text"
+        class="form-control" data-provide="datepicker"
+        name="deprate_date"
+        id="deprate_date"
+		[(ngModel)]="deprate_date"
+      />
+    </div>
+	</div>
+	
+	<!-- No of guest -->
+    <div class="form-group row">
+      <label  class="col-sm-2 col-form-label">Number  of Guests</label>
+      <div class="col-sm-10">
+	  <input
+        type="number"
+        class="form-control"
+        name="no_of_guest"
+        id="no_of_guest"
+		[(ngModel)]="no_of_guest"
+      />
+    </div>
+	</div>
+	
+	<!-- No of guest -->
+    <div class="form-group row">
+      <label  class="col-sm-2 col-form-label">Free Pickup</label>
+		<div class="col-sm-10">
+		<label class="form-check-inline">
+			<input class="form-check-input" type="radio" name="free_packup" [value]="1" [(ngModel)]="free_packup">
+			Yes
+		</label>
+		<label class="form-check-inline">
+			<input class="form-check-input" type="radio" name="free_packup" [value]="0" [(ngModel)]="free_packup">
+			No
+		</label>
+		</div>
+    </div>
+	
+	
+	
+	  <!-- flight_number -->
+    <div class="form-group row">
+      <label  class="col-sm-2 col-form-label">Flight Number</label>
+      <div class="col-sm-10">
+	  <input
+        type="text"
+        class="form-control"
+        id="flight_number"
+        name="flight_number"
+        [(ngModel)]="flight_number"
+      />
+	  </div>
+    </div>
+	
+	<!-- flight_number -->
+    <div class="form-group row">
+      <label  class="col-sm-2 col-form-label">Specail Requests</label>
+      <div class="col-sm-10">
+	  <textarea  class="form-control" id="specail_requests"  name="specail_requests"
+        [(ngModel)]="specail_requests"
+      ></textarea> 
+    </div>
+	</div>
+	
+	
+	
+	
+	
+    <!-- Submit Button -->
+    <div class="form-group">
+      <div class="text-right">
+	  
+	  <ng-container *ngIf="isDone; else elseNotDone">
+      <button class="btn btn-primary" (click)="AddReservation()">
+        Add Reservation 
+      </button>
+    </ng-container>
+
+    <ng-template #elseNotDone>
+     <button class="btn btn-success" (click)="updateReservation()">
+        Edit Reservation
+      </button>
+    </ng-template>
+	</div>
+	  
+    </div>
+  </form>
+
+  <div class="row">
+    <div class="col-12">
+      <h2 class="text-underline">List of Reservation</h2>
+    </div>
+
+    <div class="col-12">
+      <table class="table">
+        <thead>
+          <tr>
+            
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+			<th scope="col">Room Type</th>
+			<th scope="col">Flight Number</th>
+			<th scope="col">Action</th>
+		  </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let reservation of reservations; index as i">
+            
+            <th scope="row">{{ reservation.name }}</th>
+			<th scope="row">{{ reservation.email }}</th>
+			<th scope="row">{{ reservation.Roomtype }}</th>
+			<th scope="row">{{ reservation.flight_number }}</th>
+             
+            <td>
+              <button
+                class="btn btn-danger ml-4"
+                (click)="ReservationDelete(i)"
+              >
+                Delete
+              </button>
+			  
+			  <button
+                class="btn btn-danger ml-4"
+                (click)="ReservationEdit(i)"
+              >
+                Edit
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</div>
