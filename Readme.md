@@ -2,6 +2,21 @@
 # Queue Management System 
 
 
+##  AUTO Loader SVG  Ingular Js 
+
+#### Code Path
+
+QueueSystem/front/src/app/svgloadder/svgloadder.component.ts
+
+
+
+##  Crud  Assignment With Validation Ingular Js 
+
+#### Code Path 
+
+QueueSystem/front/src/app/reservation/reservation.component.ts
+
+
 
 ##  Crud  Assignment Ingular Js 
 

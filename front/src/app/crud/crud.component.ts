@@ -17,7 +17,7 @@ export class CrudComponent implements OnInit {
   public cities = ["Peshawar", "Islamabad"];
   public selectedCity: string;
   public id = 1;
-
+  
   constructor() {}
 
   DeleteStudent(id) {

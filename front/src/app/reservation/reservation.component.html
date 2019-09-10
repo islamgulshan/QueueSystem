@@ -1,47 +1,73 @@
+  
+
 <div class="container">
 <h2 class="text-center">Reservation Form</h2>
 <div class="container mt-3">
-  <form #Form="ngForm">
-    <!-- Name -->
+  <form [formGroup]= "reservationform">
+    <!-- Section Name -->
     <div class="form-group row">
       <label  class="col-sm-2 col-form-label">Name</label>
       
 	  <div class="col-sm-10">
-	  <input
+	  <input 
+		formControlName="name"
         type="text"
         class="form-control"
         name="name"
         id="name"
-        [(ngModel)]="name" 
-		
+       
       />
+	  <div *ngIf="name.touched && name.invalid" class="alert alert-danger">
+			<div *ngIf="name.errors.required" class="alert alert-danger">
+					please enter name
+				</div>
+				<div *ngIf="name.errors.minlength" class="alert alert-danger">
+					please enter mini 5 charators
+				</div>
+		</div>
 	  </div>
     </div>
 	
-	 <!-- Name -->
+	 <!-- Email Section  -->
     <div class="form-group row">
       <label  class="col-sm-2 col-form-label">Email</label>
       <div class="col-sm-10">
 	  <input
-        type="text"
+        formControlName="email"
+		type="text"
+		
         class="form-control"
         name="email"
         id="email"
-		[(ngModel)]="email"
+		
       />
+	  	  <div *ngIf="email.touched && email.invalid" class="alert alert-danger">
+			<div *ngIf="email.errors.required" class="alert alert-danger">
+					please enter email 
+				</div>
+				<div *ngIf="email.errors.pattern" class="alert alert-danger">
+					please enter valid email address
+				</div>
+		</div>
+	 
     </div>
 	</div>
 	
  
-  <!-- Name -->
- <!-- Mobile Number -->
+  <!-- Section Room Type -->
     <div class="form-group row">
       <label  class="col-sm-2 col-form-label">Room Type</label>
       <div class="col-sm-10">
-	  <select name="Roomtype" class="form-control" id="Roomtype" [(ngModel)]="Roomtype">
+	  <select name="Roomtype" formControlName="Roomtype" class="form-control" id="Roomtype" >
         <option value="">Select City</option>
         <option *ngFor="let Roomtype of roomTypelist" value="{{ Roomtype }}">{{Roomtype}}</option>
       </select>
+	  <div *ngIf="Roomtype.touched && Roomtype.invalid" class="alert alert-danger">
+			<div *ngIf="Roomtype.errors.required" class="alert alert-danger">
+					please select room type 
+				</div>
+				
+		</div>
     </div>
 	</div>
 	
@@ -50,12 +76,23 @@
       <label  class="col-sm-2 col-form-label">Arrival Date</label>
       <div class="col-sm-10">
 	  <input
-        type="text"
+        type="text" formControlName="arrival_date"
         class="form-control"
         name="arrival_date"
         id="arrival_date"
-		[(ngModel)]="arrival_date"
+		 
       />
+	  
+	   <div *ngIf="arrival_date.touched && arrival_date.invalid" class="alert alert-danger">
+			<div *ngIf="arrival_date.errors.required" class="alert alert-danger">
+					please enter arrival date 
+				</div>
+				<div *ngIf="arrival_date.errors.pattern" class="alert alert-danger">
+					please enter valid arrival date e.g. ("YYYY/MM/DD")
+				</div>
+		</div>
+		
+	   
     </div>
 	</div>
 	
@@ -67,11 +104,21 @@
 	  <div class="col-sm-10">
 	  <input
         type="text"
+		formControlName="deprate_date"
         class="form-control" data-provide="datepicker"
         name="deprate_date"
         id="deprate_date"
-		[(ngModel)]="deprate_date"
+		 
       />
+	  <div *ngIf="deprate_date.touched && deprate_date.invalid" class="alert alert-danger">
+			<div *ngIf="deprate_date.errors.required" class="alert alert-danger">
+					please enter departure date
+				</div>
+				<div *ngIf="arrival_date.errors.pattern" class="alert alert-danger">
+					please enter valid departure date e.g. ("YYYY/MM/DD")
+				</div>
+		</div>
+		
     </div>
 	</div>
 	
@@ -80,12 +127,20 @@
       <label  class="col-sm-2 col-form-label">Number  of Guests</label>
       <div class="col-sm-10">
 	  <input
-        type="number"
-        class="form-control"
+        type="number" formControlName="no_of_guest"
+        class="form-control" 
         name="no_of_guest"
-        id="no_of_guest"
-		[(ngModel)]="no_of_guest"
+        id="no_of_guest" 
       />
+	  
+	  <div *ngIf="no_of_guest.touched && no_of_guest.invalid" class="alert alert-danger">
+			<div *ngIf="no_of_guest.errors.required" class="alert alert-danger">
+					please enter number of guests
+				</div>
+				
+		</div>
+		
+		
     </div>
 	</div>
 	
@@ -93,14 +148,24 @@
     <div class="form-group row">
       <label  class="col-sm-2 col-form-label">Free Pickup</label>
 		<div class="col-sm-10">
+		
 		<label class="form-check-inline">
-			<input class="form-check-input" type="radio" name="free_packup" [value]="1" [(ngModel)]="free_packup">
+			<input  formControlName="free_packup"  class="form-check-input" type="radio" name="free_packup" [value]="1"  >
 			Yes
 		</label>
+		
 		<label class="form-check-inline">
-			<input class="form-check-input" type="radio" name="free_packup" [value]="0" [(ngModel)]="free_packup">
+			<input  formControlName="free_packup" class="form-check-input" type="radio" name="free_packup" [value]="0"  >
 			No
 		</label>
+		
+		<div *ngIf="free_packup.touched && free_packup.invalid" class="alert alert-danger">
+			<div *ngIf="free_packup.errors.required" class="alert alert-danger">
+					please cheked free pickup
+				</div>
+				
+		</div>
+		
 		</div>
     </div>
 	
@@ -115,8 +180,16 @@
         class="form-control"
         id="flight_number"
         name="flight_number"
-        [(ngModel)]="flight_number"
+		formControlName="flight_number"
       />
+	  <div *ngIf="flight_number.touched && flight_number.invalid" class="alert alert-danger">
+			<div *ngIf="flight_number.errors.required" class="alert alert-danger">
+					please enter flight number
+				</div>
+				
+		</div>
+		
+		
 	  </div>
     </div>
 	
@@ -124,9 +197,15 @@
     <div class="form-group row">
       <label  class="col-sm-2 col-form-label">Specail Requests</label>
       <div class="col-sm-10">
-	  <textarea  class="form-control" id="specail_requests"  name="specail_requests"
-        [(ngModel)]="specail_requests"
+	  <textarea  class="form-control" id="specail_requests" formControlName="specail_requests"  name="specail_requests"
       ></textarea> 
+	  <div *ngIf="specail_requests.touched && specail_requests.invalid" class="alert alert-danger">
+			<div *ngIf="specail_requests.errors.required" class="alert alert-danger">
+					please type specail Requests
+				</div>
+				
+		</div>
+		
     </div>
 	</div>
 	
@@ -138,14 +217,16 @@
     <div class="form-group">
       <div class="text-right">
 	  
+	  
+	  
 	  <ng-container *ngIf="isDone; else elseNotDone">
-      <button class="btn btn-primary" (click)="AddReservation()">
+      <button [disabled]="reservationform.pristine || reservationform.invalid" class="btn btn-primary" (click)="AddReservation()">
         Add Reservation 
       </button>
     </ng-container>
 
     <ng-template #elseNotDone>
-     <button class="btn btn-success" (click)="updateReservation()">
+     <button  [disabled]="reservationform.pristine || reservationform.invalid"  class="btn btn-success" (click)="updateReservation()">
         Edit Reservation
       </button>
     </ng-template>
@@ -172,12 +253,12 @@
 		  </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let reservation of reservations; index as i">
+          <tr *ngFor="let re of reservations; index as i">
             
-            <th scope="row">{{ reservation.name }}</th>
-			<th scope="row">{{ reservation.email }}</th>
-			<th scope="row">{{ reservation.Roomtype }}</th>
-			<th scope="row">{{ reservation.flight_number }}</th>
+            <th scope="row">{{ re.name }}</th>
+			<th scope="row">{{ re.email }}</th>
+			<th scope="row">{{ re.Roomtype }}</th>
+			<th scope="row">{{ re.flight_number }}</th>
              
             <td>
               <button

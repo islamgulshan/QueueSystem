@@ -1,110 +1,166 @@
 import { Component, OnInit } from '@angular/core';
+import { NgxSpinnerService } from "ngx-spinner";
 
+import { FormGroup,FormControl,Validators,AbstractControl, ValidationErrors } from '@angular/Forms';
+
+
+ 
+ 
 @Component({
   selector: 'app-reservation',
   templateUrl: './reservation.component.html',
   styleUrls: ['./reservation.component.css']
 })
 export class ReservationComponent implements OnInit {
-
-	public reservations = Array();
-	public name : any;
-	public email: any;
-	public arrival_date: string;
-	public deprate_date: string;
-	public no_of_guest: string;
-	public free_packup='';
-	public flight_number: string;
-	public Roomtype : string;
-	public specail_requests:string;
+	 
+	 
+	
 	public roomTypelist =['class A','class B','class C']  ;
 	public edit = '';
 	public isDone=1;
+    public reservations =Array();
 	
-	constructor() {
+	public reservationform = new FormGroup({
+		name: new FormControl("", [
+								Validators.required,
+								Validators.minLength(5)
+								]
+							)
+								,
+		email: new FormControl("", [
+								Validators.required,
+								Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+								]
+							),
+							
+		Roomtype: new FormControl("", Validators.required),
+		arrival_date: new FormControl("", [
+											Validators.required,
+											Validators.pattern('[0-9]{4}-[0-9]{2}-[0-9]{2}')
+											]),
+		deprate_date: new FormControl("", [
+											Validators.required,
+											Validators.pattern('[0-9]{4}-[0-9]{2}-[0-9]{2}')
+											]),		
+		no_of_guest: new FormControl("",Validators.required),
+		free_packup: new FormControl("",Validators.required),		
 		
-	}  
+		flight_number: new FormControl("", Validators.required),
+		specail_requests: new FormControl("", Validators.required)							
+	})
+	
+	//Get Name Getters
+	
+	  get name() {
+		return this.reservationform.get("name");
+	}
+
+	// Getters
+	get email() {
+		return this.reservationform.get("email");
+	}
+	
+	//Get Name Getters
+	
+	get Roomtype() {
+		return this.reservationform.get("Roomtype");
+	}
+	
+	//Get Name Getters
+	
+	get arrival_date() {
+		return this.reservationform.get("arrival_date");
+	}
+	
+	
+	get deprate_date() {
+		return this.reservationform.get("deprate_date");
+	}
+	
+	// Getters for number of guest
+	get no_of_guest() {
+		return this.reservationform.get("no_of_guest");
+	}
+	
+	// Getters for number of guest
+	get free_packup() {
+		return this.reservationform.get("free_packup");
+	}
+	
+	
+	
+	 
+	
+	// Getters for number of guest
+	get flight_number() {
+		return this.reservationform.get("flight_number");
+	}
+	
+	// Getters for number of guest
+	get specail_requests() {
+		return this.reservationform.get("specail_requests");
+	}
+	
+	constructor(private spinner: NgxSpinnerService) {}
+	
 	ReservationDelete(i)
 	{
 	  this.isDone=1;
 	  this.edit = '';
 	  this.reservations.splice(i,1);
-	  this.name= '';
-	  this.email= '' ;
-	  this.Roomtype= '' ;
-	  this.arrival_date='';
-	  this.deprate_date='';
-	  this.no_of_guest='';
-	  this.free_packup='';
-	  this.flight_number='';
-	  this.specail_requests='';
 	}
 	
 	AddReservation() {
-    
-	let reservations = {
-      name: this.name,
-	  email: this.email,
-	  Roomtype: this.Roomtype,
-	  arrival_date: this.arrival_date,
-	  deprate_date: this.deprate_date,
-	  no_of_guest: this.no_of_guest,
-	  flight_number:this.flight_number,
-	  specail_requests:this.specail_requests,
-	  free_packup:this.free_packup
+    //console.log(this.reservationform.value);	
+	let reservationsadd = {
+      name: this.reservationform.value.name,
+	  email: this.reservationform.value.email,
+	  Roomtype: this.reservationform.value.Roomtype,
+	  arrival_date: this.reservationform.value.arrival_date,
+	  deprate_date: this.reservationform.value.deprate_date,
+	  no_of_guest: this.reservationform.value.no_of_guest,
+	  flight_number:this.reservationform.value.flight_number,
+	  specail_requests:this.reservationform.value.specail_requests,
+	  free_packup:this.reservationform.value.free_packup
     };
+		
 	  
-	  this.reservations.push(reservations);
-	  this.name= '';
-	  this.email= '' ;
-	  this.Roomtype= '' ;
-	  this.arrival_date='';
-	  this.deprate_date='';
-	  this.no_of_guest='';
-	  this.free_packup='';
-	  this.flight_number='';
-	  this.specail_requests='';
+	 
+	  this.reservations.push(reservationsadd);
+	  this.reservationform.reset(); 
 	   
   }
  
-  //Edit Reservation 
-  ReservationEdit(i){
-		this.isDone=0;
-		this.edit = i;
-        this.name  = this.reservations[i].name,
-	    this.email = this.reservations[i].email,
-		this.Roomtype = this.reservations[i].Roomtype,
-		this.arrival_date = this.reservations[i].arrival_date,
-		this.deprate_date = this.reservations[i].deprate_date,
-		this.no_of_guest = this.reservations[i].no_of_guest,
-		this.free_packup = this.reservations[i].free_packup,
-		this.flight_number = this.reservations[i].flight_number,
-		this.specail_requests = this.reservations[i].specail_requests
-		
-  }
+	  //Edit Reservation 
+	  ReservationEdit(i){
+			this.isDone=0;
+			this.edit = i;
+			this.reservationform.get("name").setValue(this.reservations[i]['name'])
+			this.reservationform.get("email").setValue(this.reservations[i]['email'])
+			this.reservationform.get("Roomtype").setValue(this.reservations[i]['Roomtype'])
+			this.reservationform.get("arrival_date").setValue(this.reservations[i]['arrival_date'])
+			this.reservationform.get("deprate_date").setValue(this.reservations[i]['deprate_date'])
+			this.reservationform.get("no_of_guest").setValue(this.reservations[i]['no_of_guest'])
+			this.reservationform.get("flight_number").setValue(this.reservations[i]['flight_number'])
+			this.reservationform.get("specail_requests").setValue(this.reservations[i]['specail_requests'])
+			this.reservationform.get("free_packup").setValue(this.reservations[i]['free_packup'])		
+	  }
   
-  updateReservation(){
-	  this.reservations[this.edit].name =this.name;
-	  this.reservations[this.edit].email =this.email;
-	  this.reservations[this.edit].Roomtype =this.Roomtype;
-	  this.reservations[this.edit].arrival_date =this.arrival_date;
-	  this.reservations[this.edit].deprate_date =this.deprate_date;
-	  this.reservations[this.edit].no_of_guest =this.no_of_guest;
-	  this.reservations[this.edit].free_packup =this.free_packup;
-	  this.reservations[this.edit].flight_number =this.flight_number;
-	  this.reservations[this.edit].specail_requests =this.specail_requests;
-	  this.isDone=1;
-	  this.edit = '';
-	  this.name= '';
-	  this.email= '' ;
-	  this.Roomtype='';
-	  this.arrival_date= '' ;
-	  this.deprate_date= '' ;
-	  this.no_of_guest= '' ;
-	  this.free_packup='';
-	  this.flight_number='';
-	  this.specail_requests='';	  
-  }
+	  updateReservation(){
+		  this.reservations[this.edit].name =this.reservationform.value.name;
+		  this.reservations[this.edit].email =this.reservationform.value.email;
+		  this.reservations[this.edit].Roomtype =this.reservationform.value.Roomtype;
+		  this.reservations[this.edit].arrival_date =this.reservationform.value.arrival_date;
+		  this.reservations[this.edit].deprate_date =this.reservationform.value.deprate_date;
+		  this.reservations[this.edit].no_of_guest =this.reservationform.value.no_of_guest;
+		  this.reservations[this.edit].free_packup =this.reservationform.value.free_packup;
+		  this.reservations[this.edit].flight_number =this.reservationform.value.flight_number;
+		  this.reservations[this.edit].specail_requests =this.reservationform.value.specail_requests;
+		  this.isDone=1;
+		  this.edit = '';
+		  this.reservationform.reset();
+		 	  
+	  }
   
   
 
@@ -113,5 +169,16 @@ export class ReservationComponent implements OnInit {
  // ReservationDelete
   
 
-  ngOnInit() {}
+  ngOnInit() {
+	  
+	  this.spinner.show();
+ 
+    setTimeout(() => {
+      /** spinner ends after 5 seconds */
+      this.spinner.hide();
+    }, 1000);
+	
+	  
+	  
+  }
 }
