@@ -1,2 +1,21 @@
-<input (keyup)="onKey($event)">
-<p>{{values}}</p>
+  <form class="example-form">
+  <mat-form-field class="example-full-width">
+    <input
+      type="text"
+      placeholder="Select Option "
+      aria-label="Number"
+      matInput
+      [formControl]="myControl"
+      [matAutocomplete]="auto"
+    />
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option
+        *ngFor="let option of filteredOptions | async"
+        [value]="option.word"
+      >
+        {{ option.word }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>  
+ 

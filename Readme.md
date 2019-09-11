@@ -2,6 +2,14 @@
 # Queue Management System 
 
 
+##  AUTO Seggestion With API Service 
+
+#### Code Path
+
+QueueSystem/front/src/app/autocomplete/autocomplete.component.ts
+
+
+
 ##  AUTO Loader SVG  Ingular Js 
 
 #### Code Path
