@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+import { Router } from '@angular/router';
+ 
+import { LoginService } from './login.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +10,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'front';
+  constructor(private LoginService: LoginService, private router: Router) { } 
+  
+  logout() {
+    this.LoginService.logout();
+    this.LoginService.navigate(['login']);
+  }
 }

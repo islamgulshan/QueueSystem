@@ -19,28 +19,32 @@ import {AppService} from './autocomplete/app.service'
 
 import { HttpClientModule } from "@angular/common/http";
 
+import { HttpModule } from "@angular/http";
  
 @NgModule({
    declarations: [
       AppComponent,  
+      ReservationComponent,
       AutocompleteComponent
    ],
    imports: [
       BrowserModule,
       AppRoutingModule,
       FormsModule,
-	  ReactiveFormsModule,
-	  NgxSpinnerModule,
-     HttpClientModule,
-     MatFormFieldModule,
-     MatAutocompleteModule,
-    MatInputModule,
-    BrowserAnimationsModule
-   ],
+      ReactiveFormsModule,
+      NgxSpinnerModule,
+      HttpClientModule,
+      MatFormFieldModule,
+      MatAutocompleteModule,
+      MatInputModule,
+      BrowserAnimationsModule,
+      HttpModule  
+    ],
    providers: [AppService],
    bootstrap: [
       AppComponent,
-      AutocompleteComponent
+      AutocompleteComponent,
+	   ReservationComponent
    ]
 })
 export class AppModule { }

@@ -1,9 +1,16 @@
   
+  
+ <div class="form-group">
+  <label for="file">Choose File</label>
+  <input type="file"
+         id="file"
+         (change)="handleFileInput()">
+</div>
 
 <div class="container">
 <h2 class="text-center">Reservation Form</h2>
 <div class="container mt-3">
-  <form [formGroup]= "reservationform">
+  <form [formGroup]= "reservationform" >
     <!-- Section Name -->
     <div class="form-group row">
       <label  class="col-sm-2 col-form-label">Name</label>
@@ -252,25 +259,26 @@
 			<th scope="col">Action</th>
 		  </tr>
         </thead>
+        
         <tbody>
-          <tr *ngFor="let re of reservations; index as i">
+          <tr *ngFor="let re of reservation ; index as  i">
             
             <th scope="row">{{ re.name }}</th>
 			<th scope="row">{{ re.email }}</th>
-			<th scope="row">{{ re.Roomtype }}</th>
+			<th scope="row">{{ re.room_type }}</th>
 			<th scope="row">{{ re.flight_number }}</th>
              
             <td>
               <button
                 class="btn btn-danger ml-4"
-                (click)="ReservationDelete(i)"
+                (click)="ReservationDelete(re._id)"
               >
                 Delete
               </button>
 			  
 			  <button
                 class="btn btn-danger ml-4"
-                (click)="ReservationEdit(i)"
+                (click)="ReservationEdit(i, re._id)"
               >
                 Edit
               </button>

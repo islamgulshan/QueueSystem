@@ -10,23 +10,25 @@ import {  tap, map } from "rxjs/operators";
 @Injectable()
 export class AppService {
     
-    wordslist = [];
-	url: string
-    constructor(private http: HttpClient ){}
+    // wordslist = [];
+	// url: string
+    // constructor(private http: HttpClient ){
+    //     this.url  = 'https://api.datamuse.com/words?ml='
+    // }
 
-    get_record() {
-        return this.wordslist.length
-          ? of(this.wordslist)
-          : this.http
-              .get<any>("https://api.datamuse.com/words?ml=bron")
-              .pipe(tap(data => (this.wordslist = data)));
-      }
+    // get_record() {
+    //     return this.wordslist.length
+    //       ? of(this.wordslist)
+    //       : this.http
+    //           .get<any>("https://api.datamuse.com/words?ml=bron")
+    //           .pipe(tap(data => (this.wordslist = data)));
+    //   }
 
-    search_word(searchkey){
-        return this.http.get(this.url + searchkey).map(res => {
-        	return res.json().map(item => {
-        		return item.word
-        	})
-        })
-    }
+    // search_word(searchkey){
+    //     return this.http.get(this.url + searchkey).map(res => {
+    //     	return res.json().map(item => {
+    //     		return item.word
+    //     	})
+    //     })
+    // }
 }

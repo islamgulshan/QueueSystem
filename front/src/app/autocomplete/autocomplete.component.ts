@@ -17,28 +17,28 @@ import { Observable } from "rxjs";
 
 export class AutocompleteComponent{
 	 
-  myControl = new FormControl();
-  options = [];
-  filteredOptions: Observable<any[]>;
+//   myControl = new FormControl();
+//   options = [];
+//   filteredOptions: Observable<any[]>;
 
-  constructor(private apiService: AppService) {} 
+//   constructor(private apiService: AppService) {} 
    
 
-ngOnInit() {
-    this.filteredOptions = this.myControl.valueChanges.pipe(
-      startWith(""),
-      debounceTime(400),
-      switchMap(value => this.search(value))
-    );
-  }
+// ngOnInit() {
+//     this.filteredOptions = this.myControl.valueChanges.pipe(
+//       startWith(""),
+//       debounceTime(400),
+//       switchMap(value => this.search(value))
+//     );
+//   }
 
-  search(value) {
-    return this.apiService.get_record().pipe(
-      map(response =>
-        response.filter(option => {
-          return option.word.toLowerCase().indexOf(value.toLowerCase()) === 0;
-        })
-      )
-    );
-  }
+//   search(value) {
+//     return this.apiService.get_record().pipe(
+//       map(response =>
+//         response.filter(option => {
+//           return option.word.toLowerCase().indexOf(value.toLowerCase()) === 0;
+//         })
+//       )
+//     );
+//   }
 }
